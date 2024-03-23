@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const baseMarketValueInputs = document.querySelectorAll(
     'input[name="base-market-value"]'
   );
+  const totalBaseMarketValueOutput = document.getElementById(
+    "total-base-market-value"
+  );
 
   // Add event listener to each classification select element
   classificationSelects.forEach((classificationSelect) => {
@@ -36,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "R-3",
             "R-4",
           ]);
-          break;
+          break; // Add break statement
         case "Commercial":
           showSubClassifications(subClassificationSelect, [
             "C-1",
@@ -44,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "C-3",
             "C-4",
           ]);
-          break;
+          break; // Add break statement
         case "Industrial":
           showSubClassifications(subClassificationSelect, [
             "I-1",
@@ -52,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "I-3",
             "I-4",
           ]);
-          break;
+          break; // Add break statement
         case "Agricultural":
           showSubClassifications(subClassificationSelect, [
             "UPLR-1",
@@ -96,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "RUB-3",
             "RUB-4",
           ]);
-          break;
+          break; // Add break statement
         default:
           // If other classifications are selected, show all options
           subClassificationSelect
@@ -104,6 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .forEach((option) => {
               option.style.display = "block";
             });
+          break; // Add break statement
       }
 
       // Reset selected sub-classification
@@ -201,15 +205,15 @@ document.addEventListener("DOMContentLoaded", function () {
         case "COFE-4":
           unitValueInput.value = "29000";
           break;
-        case "ABACA-1":
+        case "ABA-1":
           unitValueInput.value = "42400";
-        case "ABACA-2":
+        case "ABA-2":
           unitValueInput.value = "33900";
           break;
-        case "ABACA-3":
+        case "ABA-3":
           unitValueInput.value = "25400";
           break;
-        case "ABACA-4":
+        case "ABA-4":
           unitValueInput.value = "16900";
           break;
         case "OR-1":
@@ -267,9 +271,9 @@ document.addEventListener("DOMContentLoaded", function () {
         case "RUB-4":
           unitValueInput.value = "34300";
           break;
-
         default:
           unitValueInput.value = ""; // Clear the unit value if none of the above cases match
+          break; // Add break statement
       }
     });
   });
@@ -282,10 +286,12 @@ document.addEventListener("DOMContentLoaded", function () {
       const baseMarketValue = area * unitValue;
 
       if (!isNaN(baseMarketValue)) {
-        baseMarketValueInputs[index].value = baseMarketValue.toFixed(2); // Set the calculated base market value
+        baseMarketValueInputs[index].value = baseMarketValue.toFixed(2);
       } else {
-        baseMarketValueInputs[index].value = ""; // Clear the base market value if calculation fails
+        baseMarketValueInputs[index].value = "";
       }
+
+      updateTotalBaseMarketValue(); // Recalculate total base market value
     });
   });
 
@@ -297,12 +303,31 @@ document.addEventListener("DOMContentLoaded", function () {
       const baseMarketValue = area * unitValue;
 
       if (!isNaN(baseMarketValue)) {
-        baseMarketValueInputs[index].value = baseMarketValue.toFixed(2); // Set the calculated base market value
+        baseMarketValueInputs[index].value = baseMarketValue.toFixed(2);
       } else {
-        baseMarketValueInputs[index].value = ""; // Clear the base market value if calculation fails
+        baseMarketValueInputs[index].value = "";
       }
+
+      updateTotalBaseMarketValue(); // Recalculate total base market value
     });
   });
+
+  // Event listener setup for base market value input elements
+  baseMarketValueInputs.forEach((input) => {
+    input.addEventListener("input", updateTotalBaseMarketValue);
+  });
+
+  // Function to update total base market value
+  function updateTotalBaseMarketValue() {
+    let totalBaseMarketValue = 0;
+    baseMarketValueInputs.forEach((input) => {
+      const value = parseFloat(input.value);
+      if (!isNaN(value)) {
+        totalBaseMarketValue += value;
+      }
+    });
+    totalBaseMarketValueOutput.textContent = totalBaseMarketValue.toFixed(2);
+  }
 
   // Function to show sub-classifications based on the selected classification
   function showSubClassifications(selectElement, subClassifications) {
@@ -314,5 +339,22 @@ document.addEventListener("DOMContentLoaded", function () {
         option.style.display = "block";
       }
     });
+  }
+
+  // Event listener setup for base market value input elements
+  baseMarketValueInputs.forEach((input) => {
+    input.addEventListener("input", updateTotalBaseMarketValue);
+  });
+
+  // Function to update total base market value
+  function updateTotalBaseMarketValue() {
+    let totalBaseMarketValue = 0;
+    baseMarketValueInputs.forEach((input) => {
+      const value = parseFloat(input.value);
+      if (!isNaN(value)) {
+        totalBaseMarketValue += value;
+      }
+    });
+    totalBaseMarketValueOutput.value = totalBaseMarketValue.toFixed(2);
   }
 });
