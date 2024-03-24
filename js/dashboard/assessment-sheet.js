@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const baseMarketValueInputs = document.querySelectorAll(
     'input[name="base-market-value"]'
   );
-  const totalBaseMarketValueOutput = document.getElementById(
-    "total-base-market-value"
+  const totalBaseMarketValueOutputs = document.querySelectorAll(
+    ".total-base-market-value"
   );
 
   // Add event listener to each classification select element
@@ -47,6 +47,9 @@ document.addEventListener("DOMContentLoaded", function () {
             "C-3",
             "C-4",
           ]);
+          break; // Add break statement
+        case "Timberland":
+          showSubClassifications(subClassificationSelect, ["PT"]);
           break; // Add break statement
         case "Industrial":
           showSubClassifications(subClassificationSelect, [
@@ -271,6 +274,9 @@ document.addEventListener("DOMContentLoaded", function () {
         case "RUB-4":
           unitValueInput.value = "34300";
           break;
+        case "PT":
+          unitValueInput.value = "22500";
+          break;
         default:
           unitValueInput.value = ""; // Clear the unit value if none of the above cases match
           break; // Add break statement
@@ -312,23 +318,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Event listener setup for base market value input elements
-  baseMarketValueInputs.forEach((input) => {
-    input.addEventListener("input", updateTotalBaseMarketValue);
-  });
-
-  // Function to update total base market value
-  function updateTotalBaseMarketValue() {
-    let totalBaseMarketValue = 0;
-    baseMarketValueInputs.forEach((input) => {
-      const value = parseFloat(input.value);
-      if (!isNaN(value)) {
-        totalBaseMarketValue += value;
-      }
-    });
-    totalBaseMarketValueOutput.textContent = totalBaseMarketValue.toFixed(2);
-  }
-
   // Function to show sub-classifications based on the selected classification
   function showSubClassifications(selectElement, subClassifications) {
     subClassifications.forEach((subClassification) => {
@@ -355,6 +344,8 @@ document.addEventListener("DOMContentLoaded", function () {
         totalBaseMarketValue += value;
       }
     });
-    totalBaseMarketValueOutput.value = totalBaseMarketValue.toFixed(2);
+    totalBaseMarketValueOutputs.forEach((output) => {
+      output.textContent = totalBaseMarketValue.toFixed(2);
+    });
   }
 });
