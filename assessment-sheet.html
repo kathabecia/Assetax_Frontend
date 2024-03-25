@@ -1114,6 +1114,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                            <!-- fist row  -->
                                         <tr>
                                             <td>
                                             <select class="form-control actual-use" name="actual-use" >
@@ -1126,36 +1127,41 @@
                                             <option value="timberland">TIMBERLAND</option>
                                             </td>
                                             <td>
-                                            <input type="number" class="form-control no-line" />
+                                              <input type="number" class="form-control  adjustment-market-value no-line" placeholder="ex. 250000" />
                                             </td>
                                             <td>
                                               <input
-                                                class="form-control assessment-level-input"
+                                                class="form-control assessment-level-input no-line"
                                                 type="number"/>
                                             </td>
                                             <td>
-                                            <input type="number" class="form-control no-line" />
+                                                 <input type="number" class="form-control no-line" name="assessed-value-output" id="assessed-value-output"/>  
+
                                             </td>
                                         </tr>
+                                        <!-- 2nd Row -->
                                         <tr>
                                             <td>
-                                            <select class="form-control" name="classification" id="classification">
+                                            <select class="form-control actual-use" name="actual-use" >
                                             <option value=""></option>
-                                            <option value="Residential">RESIDENTIAL</option>
-                                            <option value="Agricultural">AGRICULTURAL</option>
-                                            <option value="Commercial">COMMERCIAL</option>
-                                            <option value="Industrial">INDUSTRIAL</option>
-                                            <option value="Mineral">MINERAL</option>
-                                            <option value="Timberland">TIMBERLAND</option>
+                                            <option value="residential">RESIDENTIAL</option>
+                                            <option value="agricultural">AGRICULTURAL</option>
+                                            <option value="commercial">COMMERCIAL</option>
+                                            <option value="industrial">INDUSTRIAL</option>
+                                            <option value="mineral">MINERAL</option>
+                                            <option value="timberland">TIMBERLAND</option>
                                             </td>
                                             <td>
-                                            <input type="number" class="form-control no-line" />
+                                              <input type="number" class="form-control  adjustment-market-value no-line" />
                                             </td>
                                             <td>
-                                            <input type="number" class="form-control no-line" />
+                                              <input
+                                                class="form-control assessment-level-input no-line"
+                                                type="number"/>
                                             </td>
                                             <td>
-                                            <input type="number" class="form-control no-line" />
+                                                 <input type="number" class="form-control no-line" name="assessed-value-output" id="assessed-value-output"/>  
+
                                             </td>
                                         </tr>
                                         <tr>
@@ -1210,7 +1216,7 @@
                                             </td>
                 
                                             <td>
-                                            <input type="number" class="form-control no-line" />
+                                            <input type="number" class="form-control no-line" id="total-assessed-value-output" />
                                             </td>
                                         </tr>
                                         <tr>

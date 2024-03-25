@@ -18,6 +18,11 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   const actualUseInputs = document.querySelectorAll(".actual-use");
 
+  const adjustmentMarketValueInputs = document.querySelectorAll(
+    ".adjustment-market-value"
+  );
+  const assessmentLevelInputs = document.querySelectorAll(".assessment-level");
+
   // Function to initialize classification dropdowns
   function initializeClassificationDropdowns() {
     classificationSelects.forEach((classificationSelect) => {
@@ -367,9 +372,86 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  function calculateAssessedValue() {
+    const assessedValueOutput = document.getElementById(
+      "assessed-value-output"
+    );
+
+    function handleInput(input, index) {
+      input.addEventListener("input", function () {
+        const adjustmentMarketValue = parseFloat(
+          adjustmentMarketValueInputs[index].value
+        );
+        const assessmentLevel = parseFloat(assessmentLevelInputs[index].value);
+
+        if (!isNaN(adjustmentMarketValue) && !isNaN(assessmentLevel)) {
+          const assessedValue = adjustmentMarketValue * assessmentLevel;
+          assessedValueOutput.textContent = assessedValue.toFixed(2);
+        }
+      });
+    }
+
+    function calculateAssessedValue() {
+      const adjustmentMarketValueInputs = document.querySelectorAll(
+        ".adjustment-market-value"
+      );
+      const assessmentLevelInputs = document.querySelectorAll(
+        ".assessment-level-input"
+      );
+      const assessedValueOutput = document.getElementById(
+        "assessed-value-output"
+      );
+
+      const totalAssessedValueOutput = document.getElementById(
+        "total-assessed-value-output"
+      );
+
+      // Assessed Value Output
+      function handleInput(input, index) {
+        input.addEventListener("input", function () {
+          const adjustmentMarketValue = parseFloat(input.value);
+          const assessmentLevel = parseFloat(
+            assessmentLevelInputs[index].value
+          );
+
+          if (!isNaN(adjustmentMarketValue) && !isNaN(assessmentLevel)) {
+            const assessedValue =
+              (adjustmentMarketValue * assessmentLevel) / 100;
+            assessedValueOutput.value = assessedValue.toFixed(2);
+
+            totalAssessedValueOutput.value = assessedValue.toFixed(2);
+          }
+        });
+      }
+
+      // Add event listeners to adjustment market value inputs
+      adjustmentMarketValueInputs.forEach((input, index) => {
+        handleInput(input, index);
+      });
+
+      // Add event listeners to assessment level inputs
+      assessmentLevelInputs.forEach((input, index) => {
+        handleInput(input, index);
+      });
+    }
+
+    calculateAssessedValue();
+
+    // Add event listeners to adjustment market value inputs
+    adjustmentMarketValueInputs.forEach((input, index) => {
+      handleInput(input, index);
+    });
+
+    // Add event listeners to assessment level inputs
+    assessmentLevelInputs.forEach((input, index) => {
+      handleInput(input, index);
+    });
+  }
+
   // Initialize functions
   initializeClassificationDropdowns();
   initializeSubClassificationDropdowns();
   updateBaseMarketValue();
   handleActualUseInputs();
+  calculateAssessedValue();
 });
