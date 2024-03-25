@@ -1006,20 +1006,25 @@
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <td>
-                                             <div class="total-base-market-value"></div>
+                                           <td>
+                                            <div class="total-base-market-value"></div>
                                             </td>
                                             <td>
-                                            <input type="number" class="form-control no-line" />
+                                            <!-- <input type="number" class="form-control no-line " id="adjustment-factor" > -->
+                                              <!-- <input type="number" name="adjustment-factor"> -->
+                                              <!-- <div class="adjustment-factor no-line"></div> -->
+                                              <input type="number" class="form-control no-line adjustment-factor " >
+                                            
+                                              
                                             </td>
                                             <td>
-                                            <input type="number" class="form-control no-line" />
+                                           
+                                            </td><input type="number" class="form-control no-line " id="percentage-adjustment" />
+                                            <td>
+                                            <input type="number" class="form-control no-line " />
                                             </td>
                                             <td>
-                                            <input type="number" class="form-control no-line" />
-                                            </td>
-                                            <td>
-                                            <input type="number" class="form-control no-line" />
+                                            <input type="number" class="form-control no-line " />
                                             </td>
                                         </tr>
                                         <tr>
@@ -1111,20 +1116,22 @@
                                         <tbody>
                                         <tr>
                                             <td>
-                                            <select class="form-control" name="classification" id="classification">
+                                            <select class="form-control actual-use" name="actual-use" >
                                             <option value=""></option>
-                                            <option value="Residential">RESIDENTIAL</option>
-                                            <option value="Agricultural">AGRICULTURAL</option>
-                                            <option value="Commercial">COMMERCIAL</option>
-                                            <option value="Industrial">INDUSTRIAL</option>
-                                            <option value="Mineral">MINERAL</option>
-                                            <option value="Timberland">TIMBERLAND</option>
+                                            <option value="residential">RESIDENTIAL</option>
+                                            <option value="agricultural">AGRICULTURAL</option>
+                                            <option value="commercial">COMMERCIAL</option>
+                                            <option value="industrial">INDUSTRIAL</option>
+                                            <option value="mineral">MINERAL</option>
+                                            <option value="timberland">TIMBERLAND</option>
                                             </td>
                                             <td>
                                             <input type="number" class="form-control no-line" />
                                             </td>
                                             <td>
-                                            <input type="number" class="form-control no-line" />
+                                              <input
+                                                class="form-control assessment-level-input"
+                                                type="number"/>
                                             </td>
                                             <td>
                                             <input type="number" class="form-control no-line" />
